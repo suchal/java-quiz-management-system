@@ -38,5 +38,9 @@ public class User {
 		this.score = score;
 	}
 	
+	public boolean login(String username,String password) {
+		return (this.username.equals(username) && this.password.equals(password))?true:false;
+	}
+	
 
 }

@@ -4,18 +4,31 @@ import views.LoginView;
 public class LoginController {
 
 	private LoginView loginView;
-	private User student = new User("suchal", "password", "student", 0);
-	private User instructor = new User("fahad", "password", "instructor", 0);
+	private User student;
+	private User instructor;
 	
 	
-	public LoginController(User student, User instructor) {
+	public LoginController() {
 //		super();
 		this.loginView = new LoginView();
-		this.student = student;
-		this.instructor = instructor;
+
+		this.student = new User("suchal", "password", "student", 0);
+		this.instructor = new User("fahad", "password", "instructor", 0);
 	}
 
-	public void index() {
-		this.loginView.getUsernamePassword();
+
+	public User index() {
+		while(true) {
+			String[] data = this.loginView.getUsernamePassword();
+			if(this.student.login(data[0], data[1])) {
+				//student here
+				return this.student;
+			}
+			else if(this.instructor.login(data[0], data[1])) {
+				//instructor here
+				return this.instructor;
+			}
+			
+		}
 	}
 }

@@ -1,14 +1,21 @@
 package views;
-import java.util.Scanner;  
-public class LoginView {
-	private Scanner scanner;
-	
+  
+public class LoginView extends View {
+
 	public LoginView() {
-		this.scanner = new Scanner(System.in);
+		super();
 	}
 	
 	public String[] getUsernamePassword() {
 		String[] data = {"suchal", "password"};
+		System.out.println("Welcome to Quiz Software");
+		System.out.println("Please Enter Your Username");
+		data[0] = this.scanner.next().toString();
+		System.out.println("Please enter your password");
+		data[1] = this.scanner.next().toString();
+		System.out.println(data[0]+" "+data[1]);
 		return data;
 	}
+	
+
 }

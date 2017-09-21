@@ -1,25 +1,33 @@
 import controllers.LoginController;
 import models.User;
+import controllers.InstructorController;
+
 public class App {
 	
 	private LoginController loginController;
-	private User student = new User("suchal", "password", "student", 0);
-	private User instructor = new User("fahad", "password", "instructor", 0);
-	
+	private InstructorController instructorController;
+	public User currentUser;
 	
 	
 	App() {
 		
-		this.student = new User("suchal", "password", "student", 0);
-		this.instructor = new User("fahad", "password", "instructor", 0);
-		this.loginController = new LoginController(this.student, this.instructor);
+		this.instructorController = new InstructorController();
+		this.loginController = new LoginController();
+		
 	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		App $app = new App();
 		
-		$app.loginController.index();
+		
+		$app.currentUser = $app.loginController.index();
+		System.out.println("Welcome "+$app.currentUser.getUsername());
+		if($app.currentUser.getRole().equals("student")) {
+			
+		}else if($app.currentUser.getRole().equals("instructor")) {
+			$app.instructorController.index($app.currentUser);
+		}
 	}
 
 }
